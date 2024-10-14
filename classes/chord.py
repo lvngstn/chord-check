@@ -1,5 +1,3 @@
-from itertools import permutations
-
 class Chord:
     def __init__(self):
         self.chord_notes = []  

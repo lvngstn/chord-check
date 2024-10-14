@@ -1,4 +1,4 @@
-from note import Note
+from classes.note import Note
 
 class Fretboard:
     def __init__(self):

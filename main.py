@@ -1,6 +1,6 @@
-from fretboard import Fretboard
-from chord_database import ChordDatabase
-from chord import Chord
+from classes.fretboard import Fretboard
+from classes.chord_database import ChordDatabase
+from classes.chord import Chord
 from itertools import permutations
 
 def generate_chords(guitar, open_strings, stretch, chord_db):
