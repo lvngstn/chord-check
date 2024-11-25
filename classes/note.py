@@ -1,4 +1,5 @@
 class Note:
+    chromatic_scale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']    
     open_string = 0
     fret = 0
 
@@ -37,11 +38,10 @@ class Note:
         return self.open_string
 
     def __sub__(self, other):
-        chromatic_scale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-        self_index = chromatic_scale.index(self.name)
+        self_index = self.chromatic_scale.index(self.name)
         other_index = self_index
         res = 0
-        while chromatic_scale[other_index] != other.name:
+        while self.chromatic_scale[other_index] != other.name:
             res += 1
             other_index = (other_index + 1) % 12
 
@@ -51,10 +51,9 @@ class Note:
         return f"{self.name}"
 
     def increment(self):
-        chromatic_scale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-        current_index = chromatic_scale.index(self.name)
-        next_index = (current_index + 1) % len(chromatic_scale)
-        self.name = chromatic_scale[next_index]
+        current_index = self.chromatic_scale.index(self.name)
+        next_index = (current_index + 1) % len(self.chromatic_scale)
+        self.name = self.chromatic_scale[next_index]
         
         if next_index == 0:
             self.octave += 1

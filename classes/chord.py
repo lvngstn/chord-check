@@ -1,3 +1,5 @@
+from itertools import permutations
+from classes.chord_database import ChordDatabase
 class Chord:
     def __init__(self):
         self.chord_notes = []  
@@ -15,20 +17,21 @@ class Chord:
         self.update_string_id(fret, string)
 
     def calculate_ids(self):
-        if not self.chord_notes:
-            return []
-        potential_ids = []
+        chord_db = ChordDatabase()
+        potential_ids = set()
+        note_perms = permutations(self.chord_notes)
 
-        for r in self.chord_notes:
-            self.root_note = r
+        for note_perm in note_perms:
+            self.root_note = note_perm[0]
             potential_id = 1
 
-            for note in self.chord_notes:
-                interval = self.root_note - note
+            for note in note_perm:
+                interval =  self.root_note - note
                 potential_id *= self.note_id[interval]
-
-            potential_ids.append(potential_id)
-        return potential_ids
+            if chord_db.is_valid_id(potential_id):
+                potential_ids.add(potential_id)
+                break
+        return list(potential_ids)
 
     def set_id(self, id):
         self.prime_id = id
