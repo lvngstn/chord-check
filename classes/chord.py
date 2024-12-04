@@ -19,7 +19,7 @@ class Chord:
     def calculate_ids(self):
         chord_db = ChordDatabase()
         potential_ids = set()
-        note_perms = permutations(self.chord_notes)
+        note_perms = permutations(set(self.chord_notes))
 
         for note_perm in note_perms:
             self.root_note = note_perm[0]
